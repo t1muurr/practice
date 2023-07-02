@@ -6,24 +6,55 @@
 
 int main() 
 {
-	setlocale(LC_ALL, "Rus");
-	srand(time(0));
-	FILE* input, * output;
-	int* a;
-	int size;
-	printf("Введите размер массива: ");
-	scanf("%d", &size);
-	fflush(stdin);
-	a = (int*)malloc(size * sizeof(int));
-	input = fopen("inputmas.txt", "w");
-	if (input == NULL)
+	setlocale(LC_ALL, "Rus");	// Консоль на русском
+	srand(time(0));	
+
+	FILE* input, * output;	// Указатели на файлы
+	int* mas;	// Указатель на массив
+	int size;	// Размер массива
+
+	printf("Введите размер массива: ");	
+	scanf("%d", &size);	// Ввод размера массива
+
+	mas = (int*)malloc(size * sizeof(int));	// Выделение памяти под массив
+	input = fopen("inputmas.txt", "w");	// Открываем файл для записи
+	if (input == NULL)	// Если файл не открылся
 		printf("Не удалось открыть файл");
-	else
-		for (int i = 0; i < size; i++)
+	else	// Если файл открылся
+	{
+		for (int i = 0; i < size; i++)	// Пока i меньше размера массива
 		{
-			*(a + i) = rand() % 2001 - 1000;
-			fprintf(input, "%d\n", *(a + i));
+			*(mas + i) = rand() % 2001 - 1000;	// Заполняем массив числами диапащона [-1000:1000]
+			fprintf(input, "%d ", *(mas + i));	// Записываем массив в файл
 		}
-	fclose(input);
+	}
+	fclose(input);	// Закрываем файл
+	free(mas);	// Очищаем память
+
+	mas = (int*)malloc(size * sizeof(int));	// Выделение памяти под массив
+	output = fopen("inputmas.txt", "r");	// Открываем файл для чтения 
+	if (input == NULL)	// Если файл не открылся
+		printf("Не удалось открыть файл");
+	else	// Если файл открылся
+		for (int i = 0; i < size; i++)	// Пока i меньше размера массива
+		{
+			fscanf(input, "%d", &mas[i]);	// Считываем данные из файла в массив
+		}
+	fclose(input);	// Закрываем файл
+	//__________________________________________________
+
+	//Код программы(сортировка массива mas[size])
+
+	//__________________________________________________
+	output = fopen("outputmas.txt", "w");	// Открываем файл для записи
+	if (output == NULL)	// Если файл не открылся
+		printf("Не удалось открыть файл");
+	else	// Если файл открылся
+	{
+		for (int i = 0; i < size; i++)	// Пока i меньше размера массива
+			fprintf(output, "%d ", *(mas + i));	// Записываем в файл отсортированный массив
+	}
+	fclose(output);	// Закрываем файл
+	free(mas);	// Очищаем память
 	return 0;
 }
