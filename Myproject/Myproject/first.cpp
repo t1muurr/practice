@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-int main1() 
+int main() 
 {
 	setlocale(LC_ALL, "Rus");	// Консоль на русском
 	srand(time(0));	
@@ -12,8 +12,9 @@ int main1()
 	int* mas;	// Указатель на массив
 	int size;	// Размер массива
 
-	printf("Введите размер массива: ");	
-	scanf("%d", &size);	// Ввод размера массива
+	printf("Введите размер массива >= 1: ");	
+	while (size <= 1)
+		scanf("%d", &size);	// Ввод размера массива
 
 	mas = (int*)malloc(size * sizeof(int));	// Выделение памяти под массив
 	input = fopen("inputmas.txt", "w");	// Открываем файл для записи
