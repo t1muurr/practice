@@ -6,7 +6,7 @@
 int main() 
 {
 	setlocale(LC_ALL, "Rus");	// Консоль на русском
-	srand(time(0));	
+	srand(time(0));	// Для генерации псевдослучайных чисел
 
 	FILE* input,* output;	// Указатели на файлы
 	int* mas;	// Указатель на массив
