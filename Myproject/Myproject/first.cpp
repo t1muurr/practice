@@ -2,14 +2,13 @@
 #include <locale.h>
 #include <stdlib.h>
 #include <time.h>
-#include <malloc.h>
 
-int main() 
+int main1() 
 {
 	setlocale(LC_ALL, "Rus");	// Консоль на русском
 	srand(time(0));	
 
-	FILE* input, * output;	// Указатели на файлы
+	FILE* input,* output;	// Указатели на файлы
 	int* mas;	// Указатель на массив
 	int size;	// Размер массива
 
@@ -32,7 +31,7 @@ int main()
 	free(mas);	// Очищаем память
 
 	mas = (int*)malloc(size * sizeof(int));	// Выделение памяти под массив
-	output = fopen("inputmas.txt", "r");	// Открываем файл для чтения 
+	input = fopen("inputmas.txt", "r");	// Открываем файл для чтения 
 	if (input == NULL)	// Если файл не открылся
 		printf("Не удалось открыть файл");
 	else	// Если файл открылся
@@ -52,7 +51,7 @@ int main()
 	else	// Если файл открылся
 	{
 		for (int i = 0; i < size; i++)	// Пока i меньше размера массива
-			fprintf(output, "%d ", *(mas + i));	// Записываем в файл отсортированный массив
+			fprintf(output, "%d\n", *(mas + i));	// Записываем в файл отсортированный массив
 	}
 	fclose(output);	// Закрываем файл
 	free(mas);	// Очищаем память
