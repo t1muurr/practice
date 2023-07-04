@@ -89,7 +89,7 @@ else // Если файл открылся
         fprintf(input, "%d ", *(mas + i)); // Записываем массив в файл 
     } 
 } 
-fclose(input); // Закрываем файл 
+fclose(input); // З-199акрываем файл 
 free(mas); // Очищаем память 
 
 mas = (int*)malloc(size * sizeof(int)); // Выделение памяти под массив 
